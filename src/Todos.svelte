@@ -8,14 +8,41 @@
   let newTodoTitle = "";
   let currentFilter = "all";
   let nextId = 4;
-  const addTodo = (title) => ({ id: nextId++, title, completed: false });
-  const filteredTodos = () => todos;
-  const handleDeleteTodo = () => {};
-  const handleToggleComplete = () => {};
+  const addTodo = (event) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+    todos = [...todos, { id: nextId, title: newTodoTitle, completed: false }];
+    nextId += 1;
+    newTodoTitle = "";
+  };
+  const filteredTodos = () =>
+    currentFilter === "all"
+      ? todos
+      : currentFilter === "completed"
+      ? todos.filter((t) => t.completed)
+      : todos.filter((t) => !t.completed);
+  const handleDeleteTodo = (event) => {
+    todos = todos.filter((t) => t.id !== event.detail.id);
+  };
+  const handleToggleComplete = (event) => {
+    const idx = todos.findIndex((t) => t.id === event.detail.id);
+    todos = [
+      ...todos.slice(0, idx),
+      { ...todos[idx], completed: !todos[idx].completed },
+      ...todos.slice(idx + 1),
+    ];
+  };
   const todosRemaining = () => todos.filter((t) => !t.completed).length;
-  const checkAllTodos = () => {};
-  const updateFilter = () => {};
-  const clearCompleted = () => {};
+  const checkAllTodos = (event) => {
+    todos = todos.map((t) => (t.completed = event.target.checked));
+  };
+  const updateFilter = (newFilter) => {
+    currentFilter = newFilter;
+  };
+  const clearCompleted = () => {
+    todos = todos.filter((t) => !t.completed);
+  };
 </script>
 
 <div class="container">
