@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "lint": "eslint --ext svelte,js src/",
     "start": "sirv public"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "degit": "^2.8.0",
     "eslint": "^7.12.0",
+    "eslint-plugin-svelte3": "^2.7.3",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^6.0.0",
