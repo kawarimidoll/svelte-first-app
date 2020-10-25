@@ -31,6 +31,10 @@
     align-items: center;
   }
   .todo-item-label {
+    display: flex;
+    cursor: pointer;
+  }
+  .todo-item-title {
     border: 1px solid white;
     margin-left: 12px;
   }
@@ -42,11 +46,13 @@
 
 <div class="todo-item">
   <div class="todo-item-left" transition:fly={{ y: 20, duration: 300 }}>
-    <input
-      type="checkbox"
-      bind:checked={completed}
-      on:change={toggleComplete} />
-    <div class="todo-item-label" class:completed>{title}</div>
+    <label class="todo-item-label">
+      <input
+        type="checkbox"
+        bind:checked={completed}
+        on:change={toggleComplete} />
+      <div class="todo-item-title" class:completed>{title}</div>
+    </label>
   </div>
   <div class="remove-item" on:click={deleteTodo}>x</div>
 </div>
