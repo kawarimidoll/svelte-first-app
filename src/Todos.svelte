@@ -16,7 +16,7 @@
     nextId += 1;
     newTodoTitle = "";
   };
-  const filteredTodos = () =>
+  $: filteredTodos =
     currentFilter === "all"
       ? todos
       : currentFilter === "completed"
@@ -33,9 +33,9 @@
       ...todos.slice(idx + 1),
     ];
   };
-  const todosRemaining = () => todos.filter((t) => !t.completed).length;
+  $: todosRemaining = todos.filter((t) => !t.completed).length;
   const checkAllTodos = (event) => {
-    todos = todos.map((t) => (t.completed = event.target.checked));
+    todos = todos.map((t) => ({ ...t, completed: event.target.checked }));
   };
   const updateFilter = (newFilter) => {
     currentFilter = newFilter;
@@ -109,12 +109,12 @@
 
   <div class="inner-container">
     <div>
-      <labl>
+      <label>
         <input
           type="checkbox"
           class="inner-container-input"
           on:change={checkAllTodos} />Check All
-      </labl>
+      </label>
     </div>
     <div>{todosRemaining} items left</div>
   </div>
