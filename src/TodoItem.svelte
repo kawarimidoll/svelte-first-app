@@ -12,47 +12,28 @@
 </script>
 
 <style>
-  .todo-item {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .animation-duration-03 {
     animation-duration: 0.3s;
   }
-  .remove-item {
-    cursor: pointer;
-    margin-left: 15px;
-  }
-  .remove-item:hover {
-    color: lightseagreen;
-  }
-  .todo-item-left {
-    display: flex;
-    align-items: center;
-  }
-  .todo-item-label {
-    display: flex;
-    cursor: pointer;
-  }
-  .todo-item-title {
-    border: 1px solid white;
-    margin-left: 12px;
-  }
   .completed {
-    text-decoration: line-through;
-    color: grey;
+    @apply line-through;
+    color: gray;
   }
 </style>
 
-<div class="todo-item">
-  <div class="todo-item-left" transition:fly={{ y: 20, duration: 300 }}>
-    <label class="todo-item-label">
+<div class="mb-4 flex items-center justify-between animation-duration-03">
+  <div class="flex items-center" transition:fly={{ y: 20, duration: 300 }}>
+    <label class="flex cursor-pointer">
       <input
         type="checkbox"
         bind:checked={completed}
         on:change={toggleComplete} />
-      <div class="todo-item-title" class:completed>{title}</div>
+      <div class="ml-4" class:completed>{title}</div>
     </label>
   </div>
-  <div class="remove-item" on:click={deleteTodo}>x</div>
+  <div
+    class="cursor-pointer ml-8 hover:text-lightseagreen"
+    on:click={deleteTodo}>
+    x
+  </div>
 </div>
