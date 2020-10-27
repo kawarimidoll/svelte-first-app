@@ -50,11 +50,6 @@
     max-width: 800px;
     margin: 10px auto;
   }
-  /* .logo {              */
-  /*   display: block;    */
-  /*   margin: 20px auto; */
-  /*   width: 50%;        */
-  /* }                    */
   .todo-input {
     width: 100%;
     padding: 10px, 20px;
@@ -62,30 +57,24 @@
     margin-bottom: 20px;
   }
   .inner-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-size: 16px;
     border-top: 1px solid lightgrey;
     padding-top: 15px;
     margin-bottom: 13px;
   }
-  .inner-container-input {
-    margin-right: 12px;
-  }
   button {
-    font-size: 14px;
+    @apply appearance-none;
     background-color: white;
-    appearance: none;
+    font-size: 14px;
   }
   button:hover {
-    background: lightseagreen;
+    @apply bg-lightseagreen;
   }
   button:focus {
-    outline: none;
+    @apply outline-none;
   }
   .active {
-    background: lightseagreen;
+    @apply bg-lightseagreen;
   }
 </style>
 
@@ -107,12 +96,12 @@
     </div>
   {/each}
 
-  <div class="inner-container">
+  <div class="inner-container flex items-center justify-between">
     <div>
       <label>
         <input
           type="checkbox"
-          class="inner-container-input"
+          class="mr-4"
           on:change={checkAllTodos} />Check All
       </label>
     </div>
